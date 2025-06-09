@@ -34,6 +34,10 @@ public class MainActivity extends AppCompatActivity {
     ImageView imgPaymentMethod;
     TextView txtPaymentMethod, txtPaymentMethodDescription;
 
+    ImageView imgOrder;
+    TextView txtOrder;
+
+
     String DATABASE_NAME="SalesDatabase.sqlite";
     private static final String DB_PATH_SUFFIX = "/databases/";
     SQLiteDatabase database=null;
@@ -112,6 +116,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void addEvents() {
+        imgOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Gọi code mở màn hình quản trị nhân sự
+                openOrderViewActivity();
+            }
+        });
+
+        txtOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Gọi code mở màn hình quản trị nhân sự
+                openOrderViewActivity();
+            }
+        });
+
+
         imgEmployee.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -185,6 +206,11 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private void openOrderViewActivity() {
+        Intent intent = new Intent(MainActivity.this, OrderViewerActivity.class);
+        startActivity(intent);
+    }
+
     private void openPaymentMethodActivity() {
         Intent intent = new Intent(MainActivity.this, PaymentMethodActivity.class);
         startActivity(intent);
@@ -229,6 +255,8 @@ public class MainActivity extends AppCompatActivity {
         txtCategory = findViewById(R.id.txtCategory);
         imgPaymentMethod = findViewById(R.id.imgPaymentMethod);
         txtPaymentMethod = findViewById(R.id.txtPaymentMethod);
+        imgOrder = findViewById(R.id.imgOrder);
+        txtOrder = findViewById(R.id.txtOrder);
     }
 }
 

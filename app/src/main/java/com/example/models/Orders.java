@@ -1,6 +1,8 @@
 package com.example.models;
 
-public class Orders {
+import java.io.Serializable;
+
+public class Orders implements Serializable {
     private int Id;
     private String code;
     private String name;
