@@ -1,10 +1,15 @@
 package com.example.myapplication;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.KeyEvent;
@@ -13,6 +18,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -32,12 +38,14 @@ public class LoginActivity extends AppCompatActivity {
     CheckBox chkSaveLoginInfor;
     Button btnLogin;
     ImageView imgExit;
+    TextView txtNetworkType; // Add reference to network type TextView
     private boolean doubleBackToExitPressedOnce = false;
     private static final long DOUBLE_BACK_PRESS_THRESHOLD = 1200;
 
     String DATABASE_NAME="SalesDatabase.sqlite";
     private static final String DB_PATH_SUFFIX = "/databases/";
     SQLiteDatabase database=null;
+    BroadcastReceiver networkReceiver= null;
 
 
     @Override
@@ -47,11 +55,23 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         addView();
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.lvCustomer), (v, insets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.txtNetworkType), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        setupBroadcastReceiver();
+    }
+
+    private void setupBroadcastReceiver() {
+        // Initialize and register the BroadcastReceiver for network changes
+        networkReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                // checkNetworkStatus(); // Deactivated for testing
+            }
+        };
     }
 
     private void addView() {
@@ -60,6 +80,7 @@ public class LoginActivity extends AppCompatActivity {
         chkSaveLoginInfor=findViewById(R.id.chkSaveLoginInfor);
         btnLogin=findViewById(R.id.btnLogin);
         imgExit=findViewById(R.id.imgExit);
+        txtNetworkType=findViewById(R.id.txtNetworkType); // Initialize network type TextView
     }
 
 
@@ -161,6 +182,10 @@ public class LoginActivity extends AppCompatActivity {
         // sẽ chuyển thành on stop
         super.onPause();
         saveLoginInformation();
+        if (networkReceiver != null) {
+            unregisterReceiver(networkReceiver);
+            networkReceiver = null;
+        }
     }
 
     public void restoreLoginInformation() {
@@ -188,5 +213,8 @@ public class LoginActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         restoreLoginInformation();
+        IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(networkReceiver, filter);
+//        checkNetworkStatus();
     }
 }

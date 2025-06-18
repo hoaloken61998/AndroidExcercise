@@ -37,6 +37,9 @@ public class MainActivity extends AppCompatActivity {
     ImageView imgOrder;
     TextView txtOrder;
 
+    ImageView imgTelephony;
+    TextView txtTelephony;
+
 
     String DATABASE_NAME="SalesDatabase.sqlite";
     private static final String DB_PATH_SUFFIX = "/databases/";
@@ -53,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         addViews();
         addEvents();
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.lvCustomer), (v, insets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.txtNetworkType), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
@@ -204,6 +207,25 @@ public class MainActivity extends AppCompatActivity {
                 openPaymentMethodActivity();
             }
         });
+
+        txtTelephony.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openTelephonyActivity();
+            }
+        });
+
+        imgTelephony.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openTelephonyActivity();
+            }
+        });
+    }
+
+    private void openTelephonyActivity() {
+        Intent intent = new Intent(MainActivity.this, TelephonyActivity.class);
+        startActivity(intent);
     }
 
     private void openOrderViewActivity() {
@@ -257,6 +279,9 @@ public class MainActivity extends AppCompatActivity {
         txtPaymentMethod = findViewById(R.id.txtPaymentMethod);
         imgOrder = findViewById(R.id.imgOrder);
         txtOrder = findViewById(R.id.txtOrder);
+        imgTelephony = findViewById(R.id.imgTelephony);
+        txtTelephony = findViewById(R.id.txtTelephony);
+
     }
 }
 

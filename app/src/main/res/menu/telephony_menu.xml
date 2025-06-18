@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_all"
+        android:title="Hiển thị tất cả" />
+    <item
+        android:id="@+id/menu_viettel"
+        android:title="Lọc nhà mạng Viettel" />
+    <item
+        android:id="@+id/menu_mobifone"
+        android:title="Lọc nhà mạng MobiFone" />
+    <item
+        android:id="@+id/menu_other"
+        android:title="Lọc nhà mạng khác" />
+</menu>
+

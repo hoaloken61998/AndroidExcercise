@@ -1,5 +1,6 @@
 package com.example.connectors;
 
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
@@ -44,7 +45,7 @@ public class CustomerConnector {
         listCustomer.addCustomer(c);
     }
 
-    /*
+    /**
     * Đây là hàm truy vấn toàn bộ dữ liệu khách hàng từ cơ sở dữ liệu SQLite,
     * sau đó mô hình dữ liệu này thành theo hướng đối tượng
     * và trả về danh sách ListCustomer.
@@ -75,5 +76,33 @@ public class CustomerConnector {
         }
         cursor.close();
         return listCustomer;
+    }
+
+    public long insertNewCustomer(SQLiteDatabase database, Customer c) {
+        ContentValues values = new ContentValues();
+
+        values.put("Name", c.getName());
+        values.put("Email", c.getEmail());
+        values.put("Phone", c.getPhone());
+        values.put("Username", c.getUsername());
+        values.put("Password", c.getPassword());
+        long flag = database.insert("Customer", null, values); // Changed int to long
+        return flag;
+    }
+
+    public long save_update_customer(Customer c, SQLiteDatabase database) { // Changed private to public
+        ContentValues values = new ContentValues();
+        values.put("Name", c.getName());
+        values.put("Email", c.getEmail());
+        values.put("Phone", c.getPhone());
+        values.put("Username", c.getUsername());
+        values.put("Password", c.getPassword());
+        long flag = database.update("Customer", values, "Id=?", new String[]{c.getId()+""}); // Changed int to long
+        return flag;
+    }
+
+    public long removeCustomer(SQLiteDatabase database, String id){
+        int flag = database.delete("Customer","Id=?",new String[]{id});
+        return flag;
     }
 }

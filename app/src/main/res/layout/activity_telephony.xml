@@ -6,11 +6,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".CustomerManagementActivity">
+    tools:context=".TelephonyActivity">
 
     <ListView
-        android:id="@+id/txtNetworkType"
-        android:layout_width="409dp"
-        android:layout_height="729dp"
-        android:listSelector="@color/design_default_color_secondary" />
+        android:id="@+id/lvTelephonyInfor"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </LinearLayout>

@@ -49,4 +49,8 @@
     <string name="title_manage_categories">Manage Categories</string>
     <string name="title_payment_method">Payment Method</string>
     <string name="title_order">Order</string>
+    <string name="title_telephony">Telephony</string>
+    <string name="title_contact_name">Contact Name:</string>
+    <string name="title_phone_number">Phone Number:</string>
+    <string name="title_body">Body:</string>
 </resources>
