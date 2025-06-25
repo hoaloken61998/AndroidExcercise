@@ -45,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
     TextView txtTelephony;
     ImageView imgMultiThreading;
     TextView txtMultiThreading;
+    ImageView imgFirebase;
+    TextView txtFirebase;
 
 
     String DATABASE_NAME="SalesDatabase.sqlite";
@@ -244,6 +246,21 @@ public class MainActivity extends AppCompatActivity {
                 openMultiThreadingCategoriesActivity();
             }
         });
+
+        imgFirebase.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, LearningFirebaseActivity.class);
+                startActivity(intent);
+            }
+        });
+        txtFirebase.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, LearningFirebaseActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void openMultiThreadingCategoriesActivity() {
@@ -311,6 +328,9 @@ public class MainActivity extends AppCompatActivity {
         txtTelephony = findViewById(R.id.txtTelephony);
         imgMultiThreading = findViewById(R.id.imgMultiThreading);
         txtMultiThreading = findViewById(R.id.txtMultiThreading);
+        imgFirebase = findViewById(R.id.imgFirebase);
+        txtFirebase = findViewById(R.id.txtFirebase);
+
     }
 
     private void checkAndRequestSmsPermissions() {
