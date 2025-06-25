@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/txtPercent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MultiThreadingCategoriesActivity">
+
+    <Button
+        android:id="@+id/button"
+        android:onClick="openHandlerSendMessageActivity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/title_handler_send_message" />
+
+    <Button
+        android:id="@+id/btn_handler_post_message"
+        android:onClick="openHandlerPostMessageActivity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/title_handler_post_message" />
+
+    <Button
+        android:id="@+id/btn_async_task"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="openAsyncTaskActivity"
+        android:text="@string/title_asysn_task" />
+</LinearLayout>

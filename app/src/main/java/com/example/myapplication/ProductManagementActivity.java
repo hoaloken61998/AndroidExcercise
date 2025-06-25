@@ -53,7 +53,7 @@ public class ProductManagementActivity extends AppCompatActivity {
 
         // Apply window insets listener (ensure R.id.main is the root layout of your activity_product_management.xml)
         // Or apply it to lvProduct AFTER it's initialized in addViews if that's the specific target
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> { // Assuming R.id.main is your root container
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.txtPercent), (v, insets) -> { // Assuming R.id.main is your root container
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;

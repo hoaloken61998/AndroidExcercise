@@ -1,6 +1,8 @@
 package com.example.myapplication;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
@@ -10,9 +12,11 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.core.content.ContextCompat;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -39,11 +43,15 @@ public class MainActivity extends AppCompatActivity {
 
     ImageView imgTelephony;
     TextView txtTelephony;
+    ImageView imgMultiThreading;
+    TextView txtMultiThreading;
 
 
     String DATABASE_NAME="SalesDatabase.sqlite";
     private static final String DB_PATH_SUFFIX = "/databases/";
     SQLiteDatabase database=null;
+
+    private static final int SMS_PERMISSION_CODE = 1001;
 
 
 
@@ -53,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
+        checkAndRequestSmsPermissions();
         addViews();
         addEvents();
 
@@ -221,6 +230,25 @@ public class MainActivity extends AppCompatActivity {
                 openTelephonyActivity();
             }
         });
+
+        txtMultiThreading.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openMultiThreadingCategoriesActivity();
+            }
+        });
+
+        imgMultiThreading.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openMultiThreadingCategoriesActivity();
+            }
+        });
+    }
+
+    private void openMultiThreadingCategoriesActivity() {
+        Intent intent = new Intent(MainActivity.this, MultiThreadingCategoriesActivity.class);
+        startActivity(intent);
     }
 
     private void openTelephonyActivity() {
@@ -281,7 +309,33 @@ public class MainActivity extends AppCompatActivity {
         txtOrder = findViewById(R.id.txtOrder);
         imgTelephony = findViewById(R.id.imgTelephony);
         txtTelephony = findViewById(R.id.txtTelephony);
+        imgMultiThreading = findViewById(R.id.imgMultiThreading);
+        txtMultiThreading = findViewById(R.id.txtMultiThreading);
+    }
 
+    private void checkAndRequestSmsPermissions() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECEIVE_SMS) != PackageManager.PERMISSION_GRANTED ||
+            ContextCompat.checkSelfPermission(this, Manifest.permission.READ_SMS) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.RECEIVE_SMS, Manifest.permission.READ_SMS},
+                    SMS_PERMISSION_CODE);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == SMS_PERMISSION_CODE) {
+            boolean granted = true;
+            for (int result : grantResults) {
+                if (result != PackageManager.PERMISSION_GRANTED) {
+                    granted = false;
+                    break;
+                }
+            }
+            if (!granted) {
+                Toast.makeText(this, "SMS permissions are required for message eavesdropping.", Toast.LENGTH_LONG).show();
+            }
+        }
     }
 }
-

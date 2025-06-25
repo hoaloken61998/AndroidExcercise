@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1014684600572",
+    "project_id": "ghjgh-dab04",
+    "storage_bucket": "ghjgh-dab04.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1014684600572:android:83a63791e79ece50056f79",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZKDTlE8yCljDLqEkbg48tQtgiwZUljkA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

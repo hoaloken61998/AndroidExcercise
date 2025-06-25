@@ -53,4 +53,12 @@
     <string name="title_contact_name">Contact Name:</string>
     <string name="title_phone_number">Phone Number:</string>
     <string name="title_body">Body:</string>
+    <string name="title_multi_threading">Multi-Threading</string>
+    <string name="title_handler_send_message">HANDLER SEND MESSAGE</string>
+    <string name="title_handler_post_message">HANDLER POST MESSAGE</string>
+    <string name="title_asysn_task">ASYNC TASK</string>
+    <string name="title_draw">DRAW</string>
+    <string name="title_number_of_customer"> Number of Customers:</string>
+    <string name="title_load_customer">Load Customer</string>
+    <string name="title_number_of_button">Number Of Button:</string>
 </resources>
